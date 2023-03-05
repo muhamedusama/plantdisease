@@ -93,18 +93,20 @@ class LoginScreen extends StatelessWidget {
                           condition:state is! LoginLoadingStates,
                           builder:(context)=>  defaultButton(
                             function: () {
+                              if (state is LoginSuccessStates)
+                              {
+                                navigateTo(context, WelcomeScreen());
+                              }
                               if(formKey.currentState!.validate())
                               {
+                                //emit(LoginInitialStates());
                                 LoginCubit.get(context).userLogin
 
                                   (
                                   email: emailcontroller.text,
                                   password: passcontroller.text,
                                 );
-                                if (state is LoginSuccessStates)
-                                  {
-                                    navigateTo(context, WelcomeScreen());
-                                  }
+
 
                               }
                             }, text: 'login', upper: true,
