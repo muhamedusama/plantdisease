@@ -8,6 +8,8 @@ import 'package:gp/screens/model/cubit/states.dart';
 import 'package:gp/shared/components.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -38,8 +40,8 @@ class WelcomeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.file(modelcubit.get(context).modelImage),
-                      defaultButton(function: () {
+                      //Image.file(modelcubit.get(context).modelImage),
+                      defaultButton(function: () async {
                         modelcubit.get(context).getgalleryImage();
                         modelcubit.get(context).uploadimage();
                       }, text: 'upload image'),
