@@ -9,6 +9,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../../shared/components.dart';
+
 class modelcubit extends Cubit<modelstates>
 {
 
@@ -16,12 +18,12 @@ class modelcubit extends Cubit<modelstates>
   modelcubit() :super(modelinitialstate());
   static modelcubit get(context)=>BlocProvider.of(context);
 
-  File modelImage = File('/data/user/0/com.example.gp/cache/f89b0a5c-ef3a-4da1-b28e-7400cb73452f/1000049145.jpg');
+  File modelImage = File('');
   var picker = ImagePicker();
 
-  Future<void> getgalleryImage() async
+  Future<File> getgalleryImage() async
   {
-    //File modelImage;
+   // File modelImage=File('');
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
     );
@@ -36,12 +38,12 @@ class modelcubit extends Cubit<modelstates>
       emit(modelImagePickedErrorState());
     }
 
-
+  return modelImage;
   }
   uploadimage() async {
     //File? selectedimage;
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("https://421b-197-47-80-221.eu.ngrok.io/"));
+    final request = await http.MultipartRequest("Post",Uri.parse("https://5ee9-156-213-130-200.eu.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),
@@ -51,7 +53,9 @@ class modelcubit extends Cubit<modelstates>
     http.Response res = await http.Response.fromStream(response);
     final resJson=jsonDecode(res.body);
     message=resJson['message'];
-    print("############################################################"+message);
+    prediction = message;
+
+    emit(modelpredictedsuccessfully());
   }
   // var url;
   // void uploadimage()

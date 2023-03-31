@@ -22,6 +22,10 @@ class LoginScreen extends StatelessWidget {
               print('usos');
               showToast (text: state.error, state: ToastStates. ERROR);
             }
+          if (state is LoginSuccessStates)
+          {
+            navigateTo(context, WelcomeScreen());
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -93,10 +97,7 @@ class LoginScreen extends StatelessWidget {
                           condition:state is! LoginLoadingStates,
                           builder:(context)=>  defaultButton(
                             function: () {
-                              if (state is LoginSuccessStates)
-                              {
-                                navigateTo(context, WelcomeScreen());
-                              }
+
                               if(formKey.currentState!.validate())
                               {
                                 //emit(LoginInitialStates());

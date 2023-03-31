@@ -30,21 +30,30 @@ class WelcomeScreen extends StatelessWidget {
     return BlocProvider(
         create: (BuildContext context) => modelcubit(),
         child: BlocConsumer<modelcubit, modelstates>(
-            listener: (context, state) {},
+            listener: (context, state) {
+
+            },
             builder: (context, state) {
               return Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.cyan,
+                  backgroundColor: Colors.teal,
                 ),
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //Image.file(modelcubit.get(context).modelImage),
+                      Image.file(modelcubit.get(context).modelImage),
                       defaultButton(function: () async {
                         modelcubit.get(context).getgalleryImage();
-                        modelcubit.get(context).uploadimage();
+
+
                       }, text: 'upload image'),
+                      defaultButton(function: () async {
+                        modelcubit.get(context).uploadimage();
+
+
+                      }, text: 'predict'),
+                     Text("prediction: "+ prediction),
 
                     ],
                   ),

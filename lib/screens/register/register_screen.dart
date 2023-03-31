@@ -24,6 +24,8 @@ class RegisterScreen extends StatelessWidget {
           {
             showToast (text: state.error, state: ToastStates. ERROR);
           }
+          if (state is RegisterSuccessStates)
+          {navigateAndfFinish(context, LoginScreen());}
         },
         builder: (context, state) {
           return Scaffold(
@@ -142,8 +144,7 @@ class RegisterScreen extends StatelessWidget {
                                   password: passwordcontroller.text,
                                   phone: phonecontroller.text,
                                 );
-                                if (state is RegisterSuccessStates)
-                                {navigateAndfFinish(context, LoginScreen());}
+
                               }
                             }, text: 'Register', upper: true,
                           ), fallback: (context) =>CircularProgressIndicator() ,
