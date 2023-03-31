@@ -40,10 +40,31 @@ class modelcubit extends Cubit<modelstates>
 
   return modelImage;
   }
+
+  Future<File> openCamera() async
+  {
+    // File modelImage=File('');
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+    );
+    if (pickedFile != null)
+    {
+      modelImage = File (pickedFile.path);
+      print(modelImage.path);
+      emit(modelImagePickedSuccessState());
+    } else
+    {
+      print('No image selected.');
+      emit(modelImagePickedErrorState());
+    }
+
+    return modelImage;
+  }
+
   uploadimage() async {
     //File? selectedimage;
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("https://5ee9-156-213-130-200.eu.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("https://69fe-156-213-130-200.eu.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),
@@ -54,9 +75,9 @@ class modelcubit extends Cubit<modelstates>
     final resJson=jsonDecode(res.body);
     message=resJson['message'];
     prediction = message;
-
     emit(modelpredictedsuccessfully());
   }
+
   // var url;
   // void uploadimage()
   // {

@@ -42,15 +42,19 @@ class WelcomeScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.file(modelcubit.get(context).modelImage),
+                      //Image.file(modelcubit.get(context).modelImage),
                       defaultButton(function: () async {
                         modelcubit.get(context).getgalleryImage();
 
 
                       }, text: 'upload image'),
+
+                      defaultButton(function: () async {
+                        modelcubit.get(context).openCamera();
+                      }, text: 'open camera'),
+
                       defaultButton(function: () async {
                         modelcubit.get(context).uploadimage();
-
 
                       }, text: 'predict'),
                      Text("prediction: "+ prediction),
