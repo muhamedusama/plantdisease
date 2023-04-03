@@ -11,7 +11,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class WelcomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     File image;
@@ -43,17 +43,26 @@ class WelcomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //Image.file(modelcubit.get(context).modelImage),
-                      defaultButton(function: () async {
+                      defaultButton(
+                          height: 36,
+                          width: 236,
+                          function: () async {
                         modelcubit.get(context).getgalleryImage();
 
 
                       }, text: 'upload image'),
 
-                      defaultButton(function: () async {
+                      defaultButton(
+                          height: 36,
+                          width: 236,
+                          function: () async {
                         modelcubit.get(context).openCamera();
                       }, text: 'open camera'),
 
-                      defaultButton(function: () async {
+                      defaultButton(
+                          height: 36,
+                          width: 236,
+                          function: () async {
                         modelcubit.get(context).uploadimage();
 
                       }, text: 'predict'),

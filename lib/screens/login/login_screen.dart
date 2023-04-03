@@ -6,7 +6,7 @@ import 'package:gp/screens/register/register_screen.dart';
 import 'package:gp/shared/components.dart';
 import 'package:gp/screens/login/cubit/cubit.dart';
 
-import '../model/welcome_screen.dart';
+import '../model/home_screen.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,12 @@ class LoginScreen extends StatelessWidget {
             }
           if (state is LoginSuccessStates)
           {
-            navigateTo(context, WelcomeScreen());
+            navigateTo(context, HomeScreen());
           }
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-                ),
+            backgroundColor: backgroundcolor,
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -39,24 +38,19 @@ class LoginScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
 
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'LOGIN',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(color: Colors.black),
+                          'Sign in',
+                          style: TextStyle(
+                            color: textcolor,
+                            fontSize: 36,
+                            fontFamily: 'poppins'
+                          ),
                         ),
                         SizedBox(
                           height: 10,
                         ), //
-                        Text(
-                          'login now to try our model',
-                          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                                color: Colors.grey,
-                              ),
-                        ),
                         SizedBox(
                           height: 40,
                         ), //
@@ -91,11 +85,13 @@ class LoginScreen extends StatelessWidget {
                           prefix: Icons.lock_outlined,
                         ), // Text
                         SizedBox(
-                          height: 10,
+                          height: 50,
                         ),
                         ConditionalBuilder(
                           condition:state is! LoginLoadingStates,
                           builder:(context)=>  defaultButton(
+                            height: 36,
+                            width: 236,
                             function: () {
 
                               if(formKey.currentState!.validate())
@@ -110,21 +106,20 @@ class LoginScreen extends StatelessWidget {
 
 
                               }
-                            }, text: 'login', upper: true,
+                            }, text: 'Sign in', upper: true,
                           ), fallback: (context) =>CircularProgressIndicator() ,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 11,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Don\`t have an account?'),
                             defaultTextButton(
                                 function: () {
                                   navigateTo(context, RegisterScreen());
                                 },
-                                text: 'register'),
+                                text: 'forgot your password?'),
                           ],
                         ),
                       ],

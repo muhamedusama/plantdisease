@@ -3,25 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 String prediction = "";
-
+Color backgroundcolor=Color(0xffE9EFC0);
+Color textcolor=Color(0xff2C5611);
+Color iconscolor=Color(0xff83BD75);
 Widget defaultButton({
-  double width = double.infinity,
+  //double width = double.infinity,
   Color background = Colors.teal,
   required Function function,
   bool upper = true,
   required String text,
+  required double height,
+  required double width,
 }) => Container(
+  decoration: BoxDecoration(
+    color: Color(0xff4E944F),
+    borderRadius: BorderRadius.circular(45),
+  ),
   width: width,
-  height: 40.0,
-  color: background,
+  height: height,
+  //color: background,
   child: MaterialButton(
+
+    shape: RoundedRectangleBorder(
+    ),
     onPressed: (){
       function();
     },
     child: Text(
       upper ? text.toUpperCase() : text,
+
       style: TextStyle(
         color: Colors.white,
+        fontFamily: 'poppins'
       ),
     ),
   ),
@@ -41,23 +54,23 @@ Widget defaultTextForm({
   bool ispassword = false,
 }) => TextFormField(
   controller: controller,
-  cursorColor: Colors.black,
+  cursorColor: iconscolor,
   keyboardType: type,
   obscureText: ispassword,
   onFieldSubmitted: onSubmit != null? onSubmit() : null,
   onChanged: onChange != null? onChange() : null,
   validator: validate,
   decoration: InputDecoration(
-    prefixIconColor: Colors.teal,
+    prefixIconColor: textcolor,
     suffixIconColor: Colors.blueGrey,
     prefixIcon: Icon(
       prefix,
     ),
     enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(color: Colors.black),
+      borderSide: BorderSide(color: textcolor),
     ),
     focusedBorder: UnderlineInputBorder(
-      borderSide: BorderSide(color: Colors.black),
+      borderSide: BorderSide(color: textcolor),
     ),
     suffixIcon: suffix !=null ?
     IconButton(
@@ -87,8 +100,12 @@ Widget defaultTextButton({
       onPressed: (){
         function();
       },
-      child: Text(text.toUpperCase()),
-      style:TextButton.styleFrom(foregroundColor: Colors.teal),
+      child: Text(text,
+      style: TextStyle(
+        fontFamily: 'poppins'
+      ),
+      ),
+      style:TextButton.styleFrom(foregroundColor: textcolor),
     );
 
 void navigateTo(context,widget) => Navigator.push(

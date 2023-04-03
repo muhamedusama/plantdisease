@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gp/screens/login/login_screen.dart';
+import 'package:gp/screens/welcome_screen/welcome_screen.dart';
 
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ Widget build(BuildContext context)
       ),
     initialRoute: 'login_screen' ,
     routes: {
-        'login_screen': (context)=> LoginScreen(),
+        'login_screen': (context)=> WelcomeScreen(),
     },
   );
 }

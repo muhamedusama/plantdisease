@@ -29,8 +29,7 @@ class RegisterScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-            ),
+            backgroundColor: backgroundcolor,
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -38,33 +37,19 @@ class RegisterScreen extends StatelessWidget {
                   child: Form(
                     key: formKey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'REGISTER',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .headline4!
-                              .copyWith(color: Colors.black),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ), //
-                        Text(
-                          'register now to try our model',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(
-                            color: Colors.grey,
+                          'Sign up',
+                          style: TextStyle(
+                            color: textcolor,
+                            fontSize: 36,
                           ),
                         ),
-
                         SizedBox(
-                          height: 40,
+                          height: 58,
                         ), //
+
                         defaultTextForm(
                           controller: namecontroller,
                           type: TextInputType.name,
@@ -73,7 +58,7 @@ class RegisterScreen extends StatelessWidget {
                               return 'please enter your name';
                             }
                           },
-                          label: 'Name',
+                          label: 'Username',
                           prefix: Icons.person,
                         ), // Text
                         SizedBox(
@@ -129,11 +114,13 @@ class RegisterScreen extends StatelessWidget {
                           prefix: Icons.phone,
                         ), // Text
                         SizedBox(
-                          height: 10,
+                          height: 40,
                         ),
                     ConditionalBuilder(
                           condition:state is! RegisterLoadingStates,
                           builder:(context)=>  defaultButton(
+                            height: 42,
+                            width: 204,
                             function: () {
                               if(formKey.currentState!.validate())
                               {
