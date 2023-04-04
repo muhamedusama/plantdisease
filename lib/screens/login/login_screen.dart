@@ -90,6 +90,7 @@ class LoginScreen extends StatelessWidget {
                         ConditionalBuilder(
                           condition:state is! LoginLoadingStates,
                           builder:(context)=>  defaultButton(
+                            radius: 45,
                             height: 36,
                             width: 236,
                             function: () {

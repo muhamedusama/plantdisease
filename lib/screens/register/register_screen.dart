@@ -119,6 +119,7 @@ class RegisterScreen extends StatelessWidget {
                     ConditionalBuilder(
                           condition:state is! RegisterLoadingStates,
                           builder:(context)=>  defaultButton(
+                            radius: 45,
                             height: 42,
                             width: 204,
                             function: () {
