@@ -20,6 +20,16 @@ class RegisterErrorStates extends RegisterStates
   RegisterErrorStates(this.error);
 
 }
+class CreateUserSuccessStates extends RegisterStates
+{
+
+}
+class CreateUserErrorStates extends RegisterStates
+{
+  final String error;
+  CreateUserErrorStates(this.error);
+
+}
 class RegisterChangePasswordVisibilityStates extends RegisterStates
 {
 

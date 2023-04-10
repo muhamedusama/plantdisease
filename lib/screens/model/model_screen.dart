@@ -18,9 +18,7 @@ class ModelScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => modelcubit(),
-      child: BlocConsumer< modelcubit,modelstates>(
+    return BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
         },
         builder: (context, state) {
@@ -46,8 +44,7 @@ class ModelScreen extends StatelessWidget {
             ),
           );;
         },
-      ),
-    );
+      );
   }
 }
 

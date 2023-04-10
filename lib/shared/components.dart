@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 String prediction = "";
+String? token = "";
+
 Color backgroundcolor=Color(0xffE9EFC0);
 Color textcolor=Color(0xff2C5611);
 Color iconscolor=Color(0xff83BD75);
 Color appbarcolor=Color(0xffB4E197);
+//final username;
 Widget defaultButton({
   //double width = double.infinity,
   Color background = Colors.teal,
@@ -35,8 +38,8 @@ Widget defaultButton({
       upper ? text.toUpperCase() : text,
 
       style: TextStyle(
-        color: Colors.white,
-        fontFamily: 'poppins'
+          color: Colors.white,
+          fontFamily: 'poppins'
       ),
     ),
   ),
@@ -86,9 +89,9 @@ Widget defaultTextForm({
     border: UnderlineInputBorder(
 
     ),
-      labelStyle: TextStyle(
-          color: Colors.black,
-      ),
+    labelStyle: TextStyle(
+      color: Colors.black,
+    ),
   ),
 );
 
@@ -103,9 +106,9 @@ Widget defaultTextButton({
         function();
       },
       child: Text(text,
-      style: TextStyle(
-        fontFamily: 'poppins'
-      ),
+        style: TextStyle(
+            fontFamily: 'poppins'
+        ),
       ),
       style:TextButton.styleFrom(foregroundColor: textcolor),
     );
@@ -133,13 +136,14 @@ void navigateAndfFinish(context,widget
 void showToast({
   required String text,
   required ToastStates state,
+  required color
 }) =>
     Fluttertoast.showToast(
       msg: text,
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 5,
-      backgroundColor: Colors.red,
+      backgroundColor: color,
       textColor: chooseToastColor(state),
       fontSize: 16.0,
     );
@@ -188,3 +192,8 @@ Widget myDivider() => Container(
   height: 1.0,
   color: Colors.grey[300],
 );
+bool isEmail(String value) {
+  final emailRegex =
+  RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  return emailRegex.hasMatch(value);
+}

@@ -12,7 +12,8 @@ class LoginLoadingStates extends LoginStates
 }
 class LoginSuccessStates extends LoginStates
 {
-
+  final String uId;
+  LoginSuccessStates(this.uId);
 }
 class LoginErrorStates extends LoginStates
 {

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp/screens/model/cubit/states.dart';
@@ -9,14 +10,35 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../../models/users_model/userModel.dart';
 import '../../../shared/components.dart';
 
 class modelcubit extends Cubit<modelstates>
 {
 
+
+
   //File modelImage;
   modelcubit() :super(modelinitialstate());
   static modelcubit get(context)=>BlocProvider.of(context);
+
+  userModel model = userModel(name: '', email: '', phone: '', uId: '');
+
+  void getUserData()
+  {
+    emit(GetUserLoadingState());
+    FirebaseFirestore.instance.collection('users').doc(token).get().then((value){
+      model = userModel.fromJson(value.data()!);
+      print("#################"+ model.name!);
+
+      emit(GetUserSuccessState());
+
+    }).catchError((error){
+      emit(GetUserErrorState(error.toString()));
+    });
+  }
+
+
 
   File modelImage = File('');
   var picker = ImagePicker();
@@ -77,6 +99,9 @@ class modelcubit extends Cubit<modelstates>
     prediction = message;
     emit(modelpredictedsuccessfully());
   }
+
+
+
 
   // var url;
   // void uploadimage()
