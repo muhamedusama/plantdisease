@@ -32,15 +32,31 @@ class HomeScreen extends StatelessWidget {
             drawer: NavigationDrawer(children: [Text('sss'),Text('dddddd')],
               backgroundColor: appbarcolor,
             ),
-
             appBar: AppBar(
-              actions: [Text('${x.name}',style: TextStyle(color: Colors.black),)],
+              iconTheme: IconThemeData(color: Colors.black),
+              actions: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('${x.name}'
+                      ,style: TextStyle(color: Colors.black,fontSize: 20,fontFamily: 'poppins'),),
+                  ],
+                )
+                ,IconButton(icon: Icon(
+                  Icons.account_circle_outlined,
+                  color: Colors.black,
+                ), onPressed: () { },)
+              ],
+
               backgroundColor: appbarcolor,
             ),
             backgroundColor: backgroundcolor,
             body: Container(
               child: Center(child: defaultButton(function: (){
-                navigateTo(context, ModelScreen());
+                modelcubit.get(context).getgalleryImage();
+
+                modelcubit.get(context).uploadimage();
+                //navigateTo(context, ModelScreen());
               },
                 text: 'detect your plant disease', height: 67,
                 width: 291,
