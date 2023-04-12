@@ -14,8 +14,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -53,10 +51,10 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: backgroundcolor,
             body: Container(
               child: Center(child: defaultButton(function: (){
-                modelcubit.get(context).getgalleryImage();
-
-                modelcubit.get(context).uploadimage();
-                //navigateTo(context, ModelScreen());
+                // modelcubit.get(context).getgalleryImage();
+                //
+                // modelcubit.get(context).uploadimage();
+                navigateTo(context, ModelScreen());
               },
                 text: 'detect your plant disease', height: 67,
                 width: 291,

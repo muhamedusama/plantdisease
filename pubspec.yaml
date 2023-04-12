@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_bloc: ^8.1.2
+  flutter_native_splash: ^2.2.19
   flutter:
     sdk: flutter
   #firebase

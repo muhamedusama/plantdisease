@@ -1,9 +1,12 @@
 //import 'package:first_app/shared/styles/icon_broken.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 String prediction = "";
 String? token = "";
+File uploadedimage=File('');
 
 Color backgroundcolor=Color(0xffE9EFC0);
 Color textcolor=Color(0xff2C5611);
