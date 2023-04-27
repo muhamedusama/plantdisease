@@ -26,6 +26,8 @@ class Prediction extends StatelessWidget {
       create: (BuildContext context) => modelcubit(),
       child: BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
+          print("helloooooooooooooo");
+          print( modelcubit.get(context).modelImage);
         },
         builder: (context, state) {
           return  Scaffold(
@@ -39,10 +41,11 @@ class Prediction extends StatelessWidget {
             ),
             backgroundColor: backgroundcolor,
             body: Center(
-
                 child: Column(
+
                   mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                    Image.file(uploadedimage),
                 Text(prediction),
             ]
           ),

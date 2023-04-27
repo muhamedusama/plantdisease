@@ -16,9 +16,7 @@ import '../../../shared/components.dart';
 class modelcubit extends Cubit<modelstates>
 {
 
-
-
-  //File modelImage;
+  File modelImage = File('');
   modelcubit() :super(modelinitialstate());
   static modelcubit get(context)=>BlocProvider.of(context);
 
@@ -38,21 +36,20 @@ class modelcubit extends Cubit<modelstates>
     });
   }
 
-
-
-  File modelImage = File('');
+  //File modelImage = File('');
   var picker = ImagePicker();
 
   Future<File> getgalleryImage() async
   {
-   // File modelImage=File('');
+    //File modelImage=File('');
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
     );
     if (pickedFile != null)
     {
       modelImage = File (pickedFile.path);
-      print(modelImage.path);
+      print("hellooooooooooo==========="+modelImage.path);
+      uploadedimage = File(modelImage.path);
       emit(modelImagePickedSuccessState());
     } else
     {
@@ -65,14 +62,14 @@ class modelcubit extends Cubit<modelstates>
 
   Future<File> openCamera() async
   {
-    // File modelImage=File('');
+    //File modelImage=File('');
     final pickedFile = await picker.pickImage(
       source: ImageSource.camera,
     );
     if (pickedFile != null)
     {
       modelImage = File (pickedFile.path);
-      print(modelImage.path);
+
       emit(modelImagePickedSuccessState());
     } else
     {
@@ -86,7 +83,7 @@ class modelcubit extends Cubit<modelstates>
   uploadimage() async {
     emit(modelloading());
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("http://845b-34-73-53-150.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("http://7697-35-227-127-158.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),

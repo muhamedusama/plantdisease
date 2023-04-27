@@ -13,6 +13,7 @@ import 'package:gp/screens/register/cubit/states.dart';
 import 'package:gp/shared/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ModelScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -23,7 +24,10 @@ class ModelScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer< modelcubit,modelstates>(
+
+    return BlocProvider(
+        create: (BuildContext context) => modelcubit(),
+    child: BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
           if (state is modelloading)
             {
@@ -40,6 +44,7 @@ class ModelScreen extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               selectedItemColor: Colors.black54,
               backgroundColor: appbarcolor,
+
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   backgroundColor: Colors.black26,
@@ -58,12 +63,11 @@ class ModelScreen extends StatelessWidget {
 
            if (index==0)
              {
-               uploadedimage=modelcubit.get(context).getgalleryImage() as File;
-               print("upload image ==="+ uploadedimage.path);
+              modelcubit.get(context).getgalleryImage() as File;
              }
            else if (index==1)
              {
-              uploadedimage=modelcubit.get(context).openCamera() as File;
+             modelcubit.get(context).openCamera() as File;
              }
            }
             ,
@@ -77,6 +81,8 @@ class ModelScreen extends StatelessWidget {
                     Text('${x.name}'
                       ,style: TextStyle(color: Colors.black,fontSize: 20,fontFamily: 'poppins'),),
                   ],
+
+
                 )
                 ,IconButton(icon: Icon(
                   Icons.account_circle_outlined,
@@ -89,10 +95,7 @@ class ModelScreen extends StatelessWidget {
             backgroundColor: backgroundcolor,
             body: Container(
               child: Center(child: defaultButton(function: (){
-
                 modelcubit.get(context).uploadimage();
-
-
               },
                 text: 'predict the disease', height: 67,
                 width: 291,
@@ -108,7 +111,8 @@ class ModelScreen extends StatelessWidget {
 
           );
         },
-      );
+      ),
+    );
   }
 }
 
@@ -125,6 +129,7 @@ class animation extends StatelessWidget {
       ),
       // color: Colors.white,
     );;
+
   }
 }
 
