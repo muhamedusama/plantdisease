@@ -7,6 +7,7 @@ import 'package:gp/screens/login/login_screen.dart';
 import 'package:gp/screens/model/cubit/cubit.dart';
 import 'package:gp/screens/model/cubit/states.dart';
 import 'package:gp/screens/model/home_screen.dart';
+import 'package:gp/screens/model/model_screen.dart';
 import 'package:gp/screens/register/cubit/cubit.dart';
 import 'package:gp/screens/register/cubit/states.dart';
 import 'package:gp/shared/components.dart';
@@ -29,6 +30,11 @@ class Prediction extends StatelessWidget {
         builder: (context, state) {
           return  Scaffold(
             appBar: AppBar(
+              leading: BackButton(
+                onPressed: (){
+                  navigateAndfFinish(context, ModelScreen());
+                },
+              ),
               backgroundColor: appbarcolor,
             ),
             backgroundColor: backgroundcolor,

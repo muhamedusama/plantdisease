@@ -12,6 +12,7 @@ import 'package:gp/screens/register/cubit/cubit.dart';
 import 'package:gp/screens/register/cubit/states.dart';
 import 'package:gp/shared/components.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ModelScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -24,6 +25,10 @@ class ModelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
+          if (state is modelloading)
+            {
+              navigateTo(context, animation());
+            }
           if (state is modelpredictedsuccessfully)
             {
               navigateTo(context, Prediction());
@@ -106,4 +111,21 @@ class ModelScreen extends StatelessWidget {
       );
   }
 }
+
+class animation extends StatelessWidget {
+  const animation({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return   Scaffold(
+
+      backgroundColor: backgroundcolor,
+      body: SpinKitWave(
+        color: appbarcolor,
+      ),
+      // color: Colors.white,
+    );;
+  }
+}
+
 

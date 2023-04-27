@@ -84,8 +84,9 @@ class modelcubit extends Cubit<modelstates>
   }
 
   uploadimage() async {
+    emit(modelloading());
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("http://6d25-104-196-192-190.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("http://845b-34-73-53-150.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),
@@ -95,6 +96,8 @@ class modelcubit extends Cubit<modelstates>
     http.Response res = await http.Response.fromStream(response);
     final resJson=jsonDecode(res.body);
     message=resJson['message'];
+    var message2=resJson['plantname'];
+    print(message2);
     print("the prediction is :::::::::::::::::::::"+message);
     prediction = message;
     emit(modelpredictedsuccessfully());

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gp/screens/login/login_screen.dart';
 import 'package:gp/screens/model/cubit/cubit.dart';
 import 'package:gp/screens/model/cubit/states.dart';
 import 'package:gp/screens/model/model_screen.dart';
@@ -27,7 +28,38 @@ class HomeScreen extends StatelessWidget {
           print("oooooooooooooooooooooo" + x.name!);
 
           return  Scaffold(
-            drawer: NavigationDrawer(children: [Text('sss'),Text('dddddd')],
+            drawer: NavigationDrawer(children: [
+              Container(
+                height: 80,
+                child: UserAccountsDrawerHeader(
+                  // currentAccountPicture: CircleAvatar(
+                  //
+                  //     child: Image(image: AssetImage("assets/tomato.png")),
+                  //
+                  // ),
+                  accountName: Text('${x.name}'),
+                  accountEmail: Text('${x.email}'),
+                decoration: BoxDecoration(
+                  color: Colors.green
+                ),
+                ),
+              )
+              ,ListTile(
+                leading: Icon(Icons.info_outline),
+                title: Text('information'),
+                onTap: (){
+                  navigateTo(context, LoginScreen());
+                }
+              ),
+              ListTile(
+                  leading: Icon(Icons.info_outline),
+                  title: Text('mido'),
+                  onTap: (){
+                   // navigateTo(context, LoginScreen());
+                  },
+                splashColor: Colors.white,
+              ),
+            ],
               backgroundColor: appbarcolor,
             ),
             appBar: AppBar(

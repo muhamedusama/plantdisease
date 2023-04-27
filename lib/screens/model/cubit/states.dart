@@ -14,6 +14,9 @@ class modelImagePickedErrorState extends modelstates {
 class modelpredictedsuccessfully extends modelstates{
 
 }
+class modelloading extends modelstates{
+
+}
 class GetUserLoadingState extends modelstates{
 
 }
