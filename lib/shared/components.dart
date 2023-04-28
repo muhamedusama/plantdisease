@@ -4,9 +4,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
-String prediction = "";
+String predictionplant = "";
+String predictiondisease = "";
 String? token = "";
 File uploadedimage=File('');
+String uploadedicons='';
 
 Color backgroundcolor=Color(0xffE9EFC0);
 Color textcolor=Color(0xff2C5611);

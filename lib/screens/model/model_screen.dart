@@ -29,6 +29,14 @@ class ModelScreen extends StatelessWidget {
         create: (BuildContext context) => modelcubit(),
     child: BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
+          if (predictionplant=="not defined")
+          {
+            uploadedicons='assets/cross_1.png';
+          }
+          else
+          {
+            uploadedicons='assets/pests_1_1.png';
+          }
           if (state is modelloading)
             {
               navigateTo(context, animation());
@@ -37,6 +45,7 @@ class ModelScreen extends StatelessWidget {
             {
               navigateTo(context, Prediction());
             }
+
         },
         builder: (context, state) {
           var x = modelcubit.get(context).model;
