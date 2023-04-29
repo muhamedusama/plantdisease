@@ -83,7 +83,7 @@ class modelcubit extends Cubit<modelstates>
   uploadimage() async {
     emit(modelloading());
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("http://39f3-34-135-193-168.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("http://ae9d-34-145-184-101.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),

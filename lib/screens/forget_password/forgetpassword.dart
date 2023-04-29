@@ -22,17 +22,34 @@ class ForgetPassword extends StatelessWidget {
             showToast(text: 'your password reset email sent successfully', color: Colors.green, state: ToastStates.ERROR);
             navigateTo(context, LoginScreen());
           }
+          if (state is ForgetErrorStates)
+          {
+            showToast(text: "PLEASE ENTER YOUR CORRECT MAIL", color: Colors.red, state: ToastStates.ERROR);
+
+          }
 
         },
         builder: (context,state)
         {
           return Scaffold(
+            appBar: AppBar(
+              backgroundColor: appbarcolor,
+            ),
             backgroundColor: backgroundcolor,
             body: Form(
               key:formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(height: 95,),
+                  Container(
+                    height: 163,
+                      width: 165,
+
+                      child: Image.asset('assets/user.png')
+
+                  ),
+                  SizedBox(height: 75,),
                   defaultTextForm(
                       controller: emailcontrol,
                       type: TextInputType.emailAddress,
@@ -46,16 +63,17 @@ class ForgetPassword extends StatelessWidget {
                       },
                       label: 'Email Adress',
                       prefix: Icons.email),
+                  SizedBox(height: 50,),
                   defaultButton(
-                    radius: 45,
-                    height: 36,
-                    width: 236,
+                    radius: 10,
+                    height: 58,
+                    width: 390,
                     function: () {
                       if(formKey.currentState!.validate())
                       {
                         ForgetCubit.get(context).userLogin(email: emailcontrol.text);
                       }
-                    }, text: 'Sign in', upper: true,
+                    }, text: 'change your password', upper: false,
                   )
                 ],
               ),
