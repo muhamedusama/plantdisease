@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 String predictionplant = "";
 String predictiondisease = "";
+String treatment = "";
 String? token = "";
 File uploadedimage=File('');
 String uploadedicons='';

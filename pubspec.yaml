@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.0.17
   flutter_native_splash: ^2.2.19
   flutter_spinkit: ^5.1.0
+  expandable_text: 2.3.0
 
 
 dev_dependencies:
