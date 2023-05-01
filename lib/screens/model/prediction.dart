@@ -110,10 +110,10 @@ class Prediction extends StatelessWidget {
                             _showPopup(context);
                              }, // call _handleClick when the text is tapped
                              child: Text(
-                               'Recommended Solutions',
+                               recommondedsolution,
                                style: TextStyle(
-                                 fontSize: 30,
-                                 color: Colors.red,
+                                 fontSize: 25,
+                                 color: Colors.black,
                                  decoration: TextDecoration.underline,
                                ),
                              )

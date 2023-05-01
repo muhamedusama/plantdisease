@@ -25,9 +25,7 @@ class ModelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider(
-        create: (BuildContext context) => modelcubit(),
-    child: BlocConsumer< modelcubit,modelstates>(
+    return BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
           if (predictionplant=="not defined")
           {
@@ -49,6 +47,7 @@ class ModelScreen extends StatelessWidget {
         },
         builder: (context, state) {
           var x = modelcubit.get(context).model;
+          print(x.name!+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
           return  Scaffold(
             bottomNavigationBar: BottomNavigationBar(
               selectedItemColor: Colors.black54,
@@ -91,7 +90,6 @@ class ModelScreen extends StatelessWidget {
                       ,style: TextStyle(color: Colors.black,fontSize: 20,fontFamily: 'poppins'),),
                   ],
 
-
                 )
                 ,IconButton(icon: Icon(
                   Icons.account_circle_outlined,
@@ -103,13 +101,17 @@ class ModelScreen extends StatelessWidget {
             ),
             backgroundColor: backgroundcolor,
             body: Container(
-              child: Center(child: defaultButton(function: (){
+              child: Center(child: disabledbutton(
+                function: ()
+                {
                 modelcubit.get(context).uploadimage();
               },
+
                 text: 'predict the disease', height: 67,
                 width: 291,
                 radius: 14,
-              )),
+              ),
+              ),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/editplant.png"),
@@ -120,8 +122,8 @@ class ModelScreen extends StatelessWidget {
 
           );
         },
-      ),
-    );
+      );
+
   }
 }
 

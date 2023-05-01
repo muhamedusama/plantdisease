@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is RegisterErrorStates)
           {
-            showToast (text: state.error,color: Colors.red, state: ToastStates. ERROR);
+            showToast (text: "This email is already used",color: Colors.red, state: ToastStates. ERROR);
           }
           if (state is CreateUserSuccessStates)
           {

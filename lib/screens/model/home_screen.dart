@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
               ),
               ListTile(
                   leading: Icon(Icons.info_outline),
-                  title: Text('mido'),
+                  title: Text('trial'),
                   onTap: (){
                    // navigateTo(context, LoginScreen());
                   },
@@ -105,6 +105,8 @@ class HomeScreen extends StatelessWidget {
         },
 
       );
+
+
   }
 }
 

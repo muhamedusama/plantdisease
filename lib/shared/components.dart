@@ -10,11 +10,16 @@ String treatment = "";
 String? token = "";
 File uploadedimage=File('');
 String uploadedicons='';
-
+bool ischecked=false;
+String recommondedsolution="";
 Color backgroundcolor=Color(0xffE9EFC0);
 Color textcolor=Color(0xff2C5611);
 Color iconscolor=Color(0xff83BD75);
 Color appbarcolor=Color(0xffB4E197);
+
+
+
+
 //final username;
 Widget defaultButton({
   //double width = double.infinity,
@@ -34,9 +39,9 @@ Widget defaultButton({
   height: height,
   //color: background,
   child: MaterialButton(
-
     shape: RoundedRectangleBorder(
     ),
+
     onPressed: (){
       function();
     },
@@ -48,6 +53,7 @@ Widget defaultButton({
           fontFamily: 'poppins'
       ),
     ),
+
   ),
 );
 
@@ -203,3 +209,39 @@ bool isEmail(String value) {
   RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
   return emailRegex.hasMatch(value);
 }
+
+
+Widget disabledbutton({
+  //double width = double.infinity,
+  Color background = Colors.teal,
+  required Function function,
+  bool upper = true,
+  required String text,
+  required double height,
+  required double width,
+  required double radius,
+}) => Container(
+  decoration: BoxDecoration(
+    color: Color(0xff4E944F),
+    borderRadius: BorderRadius.circular(radius),
+  ),
+  width: width,
+  height: height,
+  //color: background,
+  child: MaterialButton(
+    disabledColor: Color(0xff678b68),
+    onPressed: ischecked?(){
+      function();
+    }:null,
+
+    child: Text(
+      upper ? text.toUpperCase() : text,
+
+      style: TextStyle(
+          color: Colors.white,
+          fontFamily: 'poppins'
+      ),
+    ),
+
+  ),
+);

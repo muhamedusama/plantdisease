@@ -50,6 +50,7 @@ class modelcubit extends Cubit<modelstates>
       modelImage = File (pickedFile.path);
       print("hellooooooooooo==========="+modelImage.path);
       uploadedimage = File(modelImage.path);
+      ischecked=true;
       emit(modelImagePickedSuccessState());
     } else
     {
@@ -69,7 +70,7 @@ class modelcubit extends Cubit<modelstates>
     if (pickedFile != null)
     {
       modelImage = File (pickedFile.path);
-
+      ischecked=true;
       emit(modelImagePickedSuccessState());
     } else
     {
@@ -83,7 +84,7 @@ class modelcubit extends Cubit<modelstates>
   uploadimage() async {
     emit(modelloading());
     String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("http://6ba6-34-80-23-221.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("http://53b9-34-91-98-195.ngrok.io"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),
@@ -98,9 +99,18 @@ class modelcubit extends Cubit<modelstates>
     predictionplant = message;
     predictiondisease=message2;
     treatment=message3;
+    if (treatment!="Invalid")
+      {
+        recommondedsolution="Recommended Solutions ";
+      }
+    else
+      {
+        recommondedsolution="";
+      }
     print("##########################################################################");
     print(treatment);
     emit(modelpredictedsuccessfully());
+    ischecked=false;
   }
 
 

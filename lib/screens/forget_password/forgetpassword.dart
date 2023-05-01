@@ -38,44 +38,47 @@ class ForgetPassword extends StatelessWidget {
             backgroundColor: backgroundcolor,
             body: Form(
               key:formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 95,),
-                  Container(
-                    height: 163,
-                      width: 165,
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 95,),
+                    Container(
+                      height: 163,
+                        width: 165,
 
-                      child: Image.asset('assets/user.png')
+                        child: Image.asset('assets/user.png')
 
-                  ),
-                  SizedBox(height: 75,),
-                  defaultTextForm(
-                      controller: emailcontrol,
-                      type: TextInputType.emailAddress,
-                      validate: (String? value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email address';
+                    ),
+                    SizedBox(height: 75,),
+                    defaultTextForm(
+                        controller: emailcontrol,
+                        type: TextInputType.emailAddress,
+                        validate: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your email address';
+                          }
+                          if (!isEmail(value)) {
+                            return 'Please enter a valid email';
+                          }
+                        },
+                        label: 'Email Adress',
+                        prefix: Icons.email),
+                    SizedBox(height: 20,),
+                    defaultButton(
+                      radius: 5,
+                      height: 58,
+                      width: 380,
+                      function: () {
+                        if(formKey.currentState!.validate())
+                        {
+                          ForgetCubit.get(context).userLogin(email: emailcontrol.text);
                         }
-                        if (!isEmail(value)) {
-                          return 'Please enter a valid email';
-                        }
-                      },
-                      label: 'Email Adress',
-                      prefix: Icons.email),
-                  SizedBox(height: 50,),
-                  defaultButton(
-                    radius: 10,
-                    height: 58,
-                    width: 390,
-                    function: () {
-                      if(formKey.currentState!.validate())
-                      {
-                        ForgetCubit.get(context).userLogin(email: emailcontrol.text);
-                      }
-                    }, text: 'change your password', upper: false,
-                  )
-                ],
+                      }, text: 'send verification Email', upper: false,
+                    )
+                  ],
+                ),
               ),
             ),
           );
