@@ -70,6 +70,8 @@ class modelcubit extends Cubit<modelstates>
     if (pickedFile != null)
     {
       modelImage = File (pickedFile.path);
+      uploadedimage = File(modelImage.path);
+
       ischecked=true;
       emit(modelImagePickedSuccessState());
     } else
@@ -82,9 +84,9 @@ class modelcubit extends Cubit<modelstates>
   }
 
   uploadimage() async {
+    ischecked=false;
     emit(modelloading());
-    String message='';
-    final request = await http.MultipartRequest("Post",Uri.parse("http://53b9-34-91-98-195.ngrok.io"));
+    final request = await http.MultipartRequest("Post",Uri.parse("https://13c8-154-176-237-76.eu.ngrok.io/"));
     final headers = {"Content-type":"multipart/for-data"};
     request.files.add(
         http.MultipartFile('image',modelImage!.readAsBytes().asStream(),modelImage.lengthSync(),
@@ -93,12 +95,45 @@ class modelcubit extends Cubit<modelstates>
     final response= await request.send();
     http.Response res = await http.Response.fromStream(response);
     final resJson=jsonDecode(res.body);
-    message=resJson['plantname'];
+    var message=resJson['plantname'];
     var message2=resJson['diseasename'];
     var message3=resJson['treatment'];
+    var msg4=resJson['severity'];
+
     predictionplant = message;
     predictiondisease=message2;
     treatment=message3;
+    // severity+=msg4;
+     if (msg4=="Invalid")
+       {
+         severity="";
+         diseaseseverity="";
+       }
+    else if (msg4!="Invalid")
+    {
+      severity="Disease Severity: ";
+
+       if (msg4=="Low")
+     {
+       severitycolor=Color(0xff5D9C59);
+     }
+      else if (msg4=="Medium")
+      {
+        severitycolor=Color(0xffF2BE22);
+      }
+       else if (msg4=="High")
+       {
+         severitycolor=Color(0xffF29727);
+       }
+
+      else if (msg4=="Very High")
+      {
+        severitycolor=Color(0xffCD1818);
+      }
+      diseaseseverity=msg4;
+
+    }
+
     if (treatment!="Invalid")
       {
         recommondedsolution="Recommended Solutions ";
@@ -110,7 +145,6 @@ class modelcubit extends Cubit<modelstates>
     print("##########################################################################");
     print(treatment);
     emit(modelpredictedsuccessfully());
-    ischecked=false;
   }
 
 

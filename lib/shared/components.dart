@@ -7,6 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 String predictionplant = "";
 String predictiondisease = "";
 String treatment = "";
+
+String severity="";
+String diseaseseverity="";
 String? token = "";
 File uploadedimage=File('');
 String uploadedicons='';
@@ -16,6 +19,7 @@ Color backgroundcolor=Color(0xffE9EFC0);
 Color textcolor=Color(0xff2C5611);
 Color iconscolor=Color(0xff83BD75);
 Color appbarcolor=Color(0xffB4E197);
+Color severitycolor=Color(0xffE9EFC0);
 
 
 

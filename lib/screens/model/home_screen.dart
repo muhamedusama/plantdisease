@@ -5,9 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gp/screens/login/login_screen.dart';
+import 'package:gp/screens/model/aboutus.dart';
 import 'package:gp/screens/model/cubit/cubit.dart';
 import 'package:gp/screens/model/cubit/states.dart';
+import 'package:gp/screens/model/information.dart';
 import 'package:gp/screens/model/model_screen.dart';
+import 'package:gp/screens/welcome_screen/welcome_screen.dart';
 import 'package:gp/shared/components.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -37,28 +40,54 @@ class HomeScreen extends StatelessWidget {
                   //     child: Image(image: AssetImage("assets/tomato.png")),
                   //
                   // ),
-                  accountName: Text('${x.name}'),
-                  accountEmail: Text('${x.email}'),
+                  accountName: Text('${x.name}',style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),),
+                  accountEmail: Text('${x.email}',style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),),
                 decoration: BoxDecoration(
-                  color: Colors.green
+                  color: Color(0xffAAC8A7),
                 ),
                 ),
               )
               ,ListTile(
-                leading: Icon(Icons.info_outline),
-                title: Text('information'),
+                leading: Icon(Icons.info_outline,color: Colors.black,),
+                title: Text('Information',style: TextStyle(
+                  fontSize: 18,
+                ),),
                 onTap: (){
-                  navigateTo(context, LoginScreen());
+                  navigateTo(context, Information());
                 }
               ),
               ListTile(
-                  leading: Icon(Icons.info_outline),
-                  title: Text('trial'),
+                  leading: Icon(Icons.groups,color: Colors.black,),
+                  title: Text('About Us',style: TextStyle(
+                    fontSize: 18,
+                  ),),
                   onTap: (){
-                   // navigateTo(context, LoginScreen());
-                  },
-                splashColor: Colors.white,
+                    navigateTo(context, Aboutus());
+                  }
               ),
+              ListTile(
+                  leading: Icon(Icons.logout,color: Colors.black,),
+                  title: Text('Logout',style: TextStyle(
+                    fontSize: 18,
+                  ),),
+                  onTap: (){
+                    navigateTo(context, WelcomeScreen());
+                  }
+              ),
+              // ListTile(
+              //     leading: Icon(Icons.info_outline),
+              //     title: Text('trial'),
+              //     onTap: (){
+              //      // navigateTo(context, LoginScreen());
+              //     },
+              //   splashColor: Colors.white,
+              // ),
             ],
               backgroundColor: appbarcolor,
             ),

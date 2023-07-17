@@ -34,7 +34,6 @@ class Prediction extends StatelessWidget {
       child: BlocConsumer< modelcubit,modelstates>(
         listener: (context, state) {
           print( modelcubit.get(context).modelImage);
-
         },
         builder: (context, state) {
           return  Scaffold(
@@ -104,6 +103,34 @@ class Prediction extends StatelessWidget {
                                ),
 
                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    severity
+                                    ,
+                                    style: TextStyle(fontFamily: 'poppins',
+                                      fontSize: 25,
+
+
+                                    ),
+
+                                  ),
+                                  Text(
+                                    diseaseseverity
+                                    ,
+                                    style: TextStyle(fontFamily: 'poppins',
+                                      fontSize: 25,
+                                      color: severitycolor,
+
+
+                                    ),
+
+
+
+                                  ),
+                                ],
+                              ),
                                SizedBox(height: 25,),
                            GestureDetector(
                              onTap: (){
